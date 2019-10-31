@@ -3,7 +3,8 @@ export {
 };
 import {
     fase2
-} from "/fase2.js";
+} from ".} from "./fase2.js";
+/fase2.js";
 
 
 var fase1 = new Phaser.Scene("fase1");
