@@ -1,12 +1,12 @@
 import {
     start
-} from "/start.js";
+} from "./start.js";
 import {
     fase1
-} from "/fase1.js";
+} from "./fase1.js";
 import {
     fase2
-} from "/fase2.js";
+} from "./fase2.js";
 
 var config = {
     type: Phaser.AUTO,
