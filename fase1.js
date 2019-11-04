@@ -18,10 +18,9 @@ var gameOver = false;
 var scoreText;
 
 fase1.preload = function () {
-    this.load.image('sky2', 'assets/sky2.png');
+    this.load.image('sky', 'assets/sky.png');
     this.load.image('ground', 'assets/platform.png');
     this.load.image('chao', 'assets/chao.png');
-
     this.load.image('star', 'assets/star.png');
     this.load.image('bomb', 'assets/bomb.png');
     this.load.spritesheet('dude', 'assets/dude.png', {
@@ -30,16 +29,17 @@ fase1.preload = function () {
     });
 }
 
+
+
 fase1.create = function () {
     //  A simple background for our game
-    this.add.image(400, 300, 'sky2');
+    this.add.image(400, 300, 'sky');
 
     //  The platforms group contains the ground and the 2 ledges we can jump on
     platforms = this.physics.add.staticGroup();
 
-    //  Here we create the ground.
-    //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
-    platforms.create(400, 568, 'chao');//.setScale(2).refreshBody();
+    
+    platforms.create(400, 600, 'chao');//.setScale(2).refreshBody();
 
     //  Now let's create some ledges
     // (xxx, yyystart) : x = move os lados, y = move a altura
@@ -153,7 +153,7 @@ fase1.update = function () {
 function collectStar(player, star) {
     star.disableBody(true, true);
 
-    //  Add and update the score
+   
     score += 10;
     scoreText.setText('Score: ' + score);
 
@@ -174,6 +174,8 @@ function collectStar(player, star) {
         bomb.allowGravity = false
 
     }
+    //this.scene.start(fase2);
+
 }
 
 function hitBomb(player, bomb) {
@@ -183,7 +185,7 @@ function hitBomb(player, bomb) {
 
     player.anims.play('turn');
 
-    gameOver = false;
-    this.scene.start(fase2);
+    gameOver = true;
+   
 
 }
