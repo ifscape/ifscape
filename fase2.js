@@ -13,12 +13,15 @@ var score = 0;
 var gameOver = false;
 var scoreText;
 
+
 fase2.preload = function () {
     this.load.image('sky2', 'assets/sky2.png');
     this.load.image('ground', 'assets/platform.png');
+    this.load.image('chao', 'assets/chao.png');
     this.load.image('star', 'assets/star.png');
     this.load.image('bomb', 'assets/bomb.png');
     this.load.spritesheet('dude', 'assets/dude.png', {
+    
         frameWidth: 34,
         frameHeight: 34,
     });
@@ -33,15 +36,15 @@ fase2.create = function () {
 
     //  Here we create the ground.
     //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
-    platforms.create(400, 568, 'ground').setScale(2).refreshBody();
+    platforms.create(400, 600, 'chao');//.setScale(2).refreshBody();
 
     //  Now let's create some ledges
     // (xxx, yyy) : x = move os lados, y = move a altura
-    platforms.create(400, 400, 'ground');
+    platforms.create(400, 450, 'ground');
     platforms.create(800, 250, 'ground');
     platforms.create(40, 230, 'ground');
     platforms.create(290, 80, 'ground');
-    platforms.create(500, 100, 'ground');
+    platforms.create(500, 460, 'ground');
     
 
     // The player and its settings
