@@ -174,7 +174,7 @@ function collectStar(player, star) {
         bomb.allowGravity = false
 
     }
-    //this.scene.start(fase2);
+    this.scene.start(fase2);
 
 }
 
