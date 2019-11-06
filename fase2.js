@@ -1,6 +1,9 @@
 export {
     fase2
 };
+import {
+    start
+} from "./start.js";
 
 var fase2 = new Phaser.Scene("fase2");
 
@@ -28,7 +31,7 @@ fase2.preload = function () {
 }
 
 fase2.create = function () {
-    //  A simple background for our game
+    
     this.add.image(400, 300, 'sky2');
 
     //  The platforms group contains the ground and the 2 ledges we can jump on
@@ -40,12 +43,11 @@ fase2.create = function () {
 
     //  Now let's create some ledges
     // (xxx, yyy) : x = move os lados, y = move a altura
-    platforms.create(400, 450, 'ground');
+    platforms.create(400, 400, 'ground');
     platforms.create(800, 250, 'ground');
     platforms.create(40, 230, 'ground');
     platforms.create(290, 80, 'ground');
-    platforms.create(500, 460, 'ground');
-    
+
 
     // The player and its settings
     player = this.physics.add.sprite(100, 450, 'dude');
@@ -90,7 +92,7 @@ fase2.create = function () {
     //  Some stars to collect, 12 in total, evenly spaced 70 pixels apart along the x axis
     stars = this.physics.add.group({
         key: 'star',
-        repeat: 3,
+        repeat: 2,
         setXY: {
             x: 62,
             y: 8,
@@ -172,7 +174,7 @@ function collectStar(player, star) {
         bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
         bomb.allowGravity = false
 
-    }
+    } this.scene.start(start);
 }
 
 function hitBomb(player, bomb) {
