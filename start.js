@@ -6,6 +6,7 @@ import {
 } from "./fase2.js";
 export {
     start
+
 };
 
 var setupSceneInput;
