@@ -8,6 +8,8 @@ import {
     fase2
 } from "./fase2.js";
 
+
+
 var config = {
     type: Phaser.AUTO,
     width: 800,
