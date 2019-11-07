@@ -106,7 +106,25 @@ fase1.create = function () {
 
     });
 
+    // BOMBAAA CAINDOOOOO
     bombs = this.physics.add.group();
+
+    var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
+    var bomb1 = bombs.create(x, 16, 'bomb');
+
+    var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
+    var bomb2 = bombs.create(x, 16, 'bomb');
+
+    bomb1.setBounce(1);
+    bomb1.setCollideWorldBounds(true);
+    bomb1.setVelocity(Phaser.Math.Between(-200, 200), 20);
+    bomb1.allowGravity = false
+
+    bomb2.setBounce(1);
+    bomb2.setCollideWorldBounds(true);
+    bomb2.setVelocity(Phaser.Math.Between(-200, 200), 20);
+    bomb2.allowGravity = false
+    //
 
     //  The score
     scoreText = this.add.text(16, 16, 'score: 0', {
@@ -164,15 +182,7 @@ function collectStar(player, star) {
             child.enableBody(true, child.x, 0, true, true);
 
         });
-
-        var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
-
-        var bomb = bombs.create(x, 16, 'bomb');
-        bomb.setBounce(1);
-        bomb.setCollideWorldBounds(true);
-        bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
-        bomb.allowGravity = false
-
+//
     }
     this.scene.start(fase2);
 
