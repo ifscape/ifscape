@@ -9,24 +9,37 @@ export {
 
 };
 
+var button;
 var setupSceneInput;
 var start = new Phaser.Scene("SceneA");
 
 start.preload = function () {
-    this.load.image("Sky2", "assets/sky2.png")
-    this.load.image("start", "assets/start.png")
+    this.load.image("sky", "assets/sky.png");
+    this.load.spritesheet("start", "assets/start.png", {
+        frameWidth: 200,
+        frameHeight: 200
+    });
 };
 
 
 start.create = function () {
-    this.add.image(400, 300, "Sky2");
+    this.add.image(400, 300, "sky");
 
+    this.anims.create({
+        key: "animacao",
+        frames: this.anims.generateFrameNumbers("start", {
+          start: 0,
+          end: 29
+        }),
+        frameRate: 10,
+        repeat: -1
+      });
 
 
     //this.add.sprite(400, 300, "start");
-    var button = this.add
-        .image(460, 200, "start", 0)
-        .setOrigin(1, 0)
+    button = this.add
+        .sprite(400, 300, "start", 0)
+        //.setOrigin(1, 0)
         .setInteractive();
 
     button.on(
@@ -39,5 +52,5 @@ start.create = function () {
 };
 
 start.update = function () {
-
+    button.anims.play("animacao", true);
 }
