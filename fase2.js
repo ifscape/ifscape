@@ -40,18 +40,16 @@ fase2.create = function () {
     platforms = this.physics.add.staticGroup();
 
     //  Here we create the ground.
-    //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
-    platforms.create(90, 592, 'chao');//.setScale(2).refreshBody();
-    platforms.create(700, 596, 'chao2');//.setScale(2).refreshBody();
+    platforms.create(100, 592, 'chao');//.setScale(2).refreshBody();
+    platforms.create(690, 596, 'chao2');//.setScale(2).refreshBody();
     platforms.create(400, 592, 'lava')//.setScale(2).refreshBody ();
 
-    //  Now let's create some ledges
     // (xxx, yyy) : x = move os lados, y = move a altura
-    platforms.create(400, 420, 'ground');
-    platforms.create(800, 250, 'ground');
-    platforms.create(40, 230, 'ground');
-    platforms.create(290, 80, 'ground');
-
+    platforms.create(200, 380, 'ground'); //plataforma da esrquerda embaixo
+    platforms.create(600, 250, 'ground'); //platafomra da direita
+    platforms.create(40, 230, 'ground'); //platafomra da esquerda
+    platforms.create(290, 80, 'ground'); //plataforma de cima
+    platforms.create(750, 420, 'ground'); //plat direita de baixo
 
     player = this.physics.add.sprite(100, 450, 'dude');
 
@@ -110,7 +108,25 @@ fase2.create = function () {
 
     });
 
+    //
     bombs = this.physics.add.group();
+
+    var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
+    var bomb1 = bombs.create(x, 16, 'bomb');
+
+    var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
+    var bomb2 = bombs.create(x, 16, 'bomb');
+
+    bomb1.setBounce(1);
+    bomb1.setCollideWorldBounds(true);
+    bomb1.setVelocity(Phaser.Math.Between(-200, 200), 20);
+    bomb1.allowGravity = false
+
+    bomb2.setBounce(1);
+    bomb2.setCollideWorldBounds(true);
+    bomb2.setVelocity(Phaser.Math.Between(-200, 200), 20);
+    bomb2.allowGravity = false
+    //
     lava = this.physics.add.group();
     //  The score
     scoreText = this.add.text(16, 16, 'score: 0', {
