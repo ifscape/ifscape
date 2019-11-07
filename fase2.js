@@ -11,18 +11,20 @@ var player;
 var stars;
 var bombs;
 var platforms;
+var lava;
 var cursors;
 var score = 0;
 var gameOver = false;
 var scoreText;
 
-
 fase2.preload = function () {
     this.load.image('sky2', 'assets/sky2.png');
     this.load.image('ground', 'assets/platform.png');
     this.load.image('chao', 'assets/chao.png');
+    this.load.image('chao2', 'assets/chao2.png');
     this.load.image('star', 'assets/star.png');
     this.load.image('bomb', 'assets/bomb.png');
+    this.load.image('lava', 'assets/lava.png');
     this.load.spritesheet('dude', 'assets/dude.png', {
     
         frameWidth: 34,
@@ -39,17 +41,18 @@ fase2.create = function () {
 
     //  Here we create the ground.
     //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
-    platforms.create(400, 600, 'chao');//.setScale(2).refreshBody();
+    platforms.create(90, 592, 'chao');//.setScale(2).refreshBody();
+    platforms.create(700, 596, 'chao2');//.setScale(2).refreshBody();
+    platforms.create(400, 592, 'lava')//.setScale(2).refreshBody ();
 
     //  Now let's create some ledges
     // (xxx, yyy) : x = move os lados, y = move a altura
-    platforms.create(400, 400, 'ground');
+    platforms.create(400, 420, 'ground');
     platforms.create(800, 250, 'ground');
     platforms.create(40, 230, 'ground');
     platforms.create(290, 80, 'ground');
 
 
-    // The player and its settings
     player = this.physics.add.sprite(100, 450, 'dude');
 
     //  Player physics properties. Give the little guy a slight bounce.
@@ -108,23 +111,28 @@ fase2.create = function () {
     });
 
     bombs = this.physics.add.group();
-
+    lava = this.physics.add.group();
     //  The score
     scoreText = this.add.text(16, 16, 'score: 0', {
         fontSize: '32px',
         fill: '#000'
     });
 
+   
+
     //  Collide the player and the stars with the platforms
     this.physics.add.collider(player, platforms);
     this.physics.add.collider(stars, platforms);
     this.physics.add.collider(bombs, platforms);
+    this.physics.add.collider(lava, platforms);
+        
 
     //  Checks to see if the player overlaps with any of the stars, if he does call the collectStar function
     this.physics.add.overlap(player, stars, collectStar, null, this);
 
     // a bomba nao pega no personagem
     this.physics.add.collider(player, bombs, hitBomb, null, this);
+    this.physics.add.collider(player, lava, hitLava, null, this);
 }
 
 fase2.update = function () {
@@ -185,5 +193,14 @@ function hitBomb(player, bomb) {
     player.anims.play('turn');
 
     gameOver = true;
-
 }
+//colide na lava esse diabo
+function hitLava(player, lava) {
+    this.physics.pause();
+        
+    player.setTint(0xff0000);
+        
+    player.anims.play('turn');
+        
+    gameOver = true;
+    }
