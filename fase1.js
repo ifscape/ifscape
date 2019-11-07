@@ -11,8 +11,8 @@ var player;
 var stars;
 var bombs;
 var platforms;
-var chao;
 var cursors;
+var grounds;
 var score = 0;
 var gameOver = false;
 var scoreText;
@@ -20,7 +20,7 @@ var scoreText;
 fase1.preload = function () {
     this.load.image('sky', 'assets/sky.png');
     this.load.image('ground', 'assets/platform.png');
-    this.load.image('chao', 'assets/chao.png');
+    this.load.image('grounds', 'assets/grounds.png');
     this.load.image('star', 'assets/star.png');
     this.load.image('bomb', 'assets/bomb.png');
     this.load.spritesheet('dude', 'assets/dude.png', {
@@ -39,7 +39,7 @@ fase1.create = function () {
     platforms = this.physics.add.staticGroup();
 
     
-    platforms.create(400, 600, 'chao');//.setScale(2).refreshBody();
+    platforms.create(400, 600, 'grounds');//.setScale(2).refreshBody();
 
     //  Now let's create some ledges
     // (xxx, yyystart) : x = move os lados, y = move a altura
