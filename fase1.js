@@ -20,6 +20,8 @@ var scoreText;
 fase1.preload = function () {
   this.load.image('sky', 'assets/sky.png');
   this.load.image('ground', 'assets/platform.png');
+  this.load.image('plat', 'assets/plat.png');
+  this.load.image('tijolo', 'assets/tijolo.png');
   this.load.image('grounds', 'assets/grounds.png');
   this.load.image('star', 'assets/star.png');
   this.load.image('bomb', 'assets/bomb.png');
@@ -39,10 +41,15 @@ fase1.create = function () {
 
   //  Now let's create some ledges
   // (xxx, yyystart) : x = move os lados, y = move a altura
+  platforms.create(400, 250, 'plat');
+  platforms.create(850, 130, 'ground');
   platforms.create(400, 400, 'ground');
-  platforms.create(800, 250, 'ground');
-  platforms.create(40, 230, 'ground');
-  platforms.create(290, 80, 'ground');
+
+  platforms.create(30, 130, 'plat');
+
+  platforms.create(105, 100, 'tijolo');
+  platforms.create(675, 98, 'tijolo');
+  //platforms.create(290, 80, 'ground');
 
   // The player and its settings
   player = this.physics.add.sprite(100, 450, 'dude');
@@ -87,11 +94,11 @@ fase1.create = function () {
   //  Some stars to collect, 12 in total, evenly spaced 70 pixels apart along the x axis
   stars = this.physics.add.group({
     key: 'star',
-    repeat: 3,
+    repeat: 1,
     setXY: {
       x: 62,
       y: 8,
-      stepX: 230
+      stepX: 658
     }
   });
 
