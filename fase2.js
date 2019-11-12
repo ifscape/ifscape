@@ -31,9 +31,9 @@ fase2.preload = function () {
     frameHeight: 34,
   });
   this.load.spritesheet("lava", "assets/lava.png", {
-    frameWidth: 150,
-    frameHeight: 150
-  });
+    frameWidth: 180,
+    frameHeight: 30
+    });
 };
 fase2.create = function () {
 
@@ -43,9 +43,9 @@ fase2.create = function () {
   platforms = this.physics.add.staticGroup();
 
   //  Here we create the ground.
-  platforms.create(100, 592, 'chao'); //.setScale(2).refreshBody();
-  platforms.create(690, 596, 'chao2'); //.setScale(2).refreshBody();
-  platforms.create(400, 592, 'lava') //.setScale(2).refreshBody ();
+  platforms.create(100, 580, 'chao'); //.setScale(2).refreshBody();
+  platforms.create(690, 580, 'chao2'); //.setScale(2).refreshBody();
+  //platforms.create(400, 1200, 'lava');//.setScale(2).refreshBody ();
 
   // (xxx, yyy) : x = move os lados, y = move a altura
   platforms.create(200, 380, 'ground'); //plataforma da esrquerda embaixo
@@ -140,7 +140,7 @@ fase2.create = function () {
   bomb2.setVelocity(Phaser.Math.Between(-200, 200), 20);
   bomb2.allowGravity = false
   //
-  lava = this.physics.add.sprite(400, 500, "lava");
+  lava = this.physics.add.sprite(395, 800, "lava");
   lava.setCollideWorldBounds(true);
   lava.allowGravity = false
   //  The score
