@@ -31,8 +31,8 @@ fase2.preload = function () {
     frameHeight: 34,
   });
   this.load.spritesheet("lava", "assets/lava.png", {
-    frameWidth: 180,
-    frameHeight: 30
+    frameWidth: 80,
+    frameHeight: 80,
     });
 };
 fase2.create = function () {
