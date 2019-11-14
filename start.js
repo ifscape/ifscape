@@ -16,8 +16,8 @@ var start = new Phaser.Scene("SceneA");
 start.preload = function () {
   this.load.image("sky", "assets/sky.png");
   this.load.spritesheet("start", "assets/start.png", {
-    frameWidth: 200,
-    frameHeight: 200
+    frameWidth: 135,
+    frameHeight: 135
   });
 };
 
@@ -41,7 +41,7 @@ start.create = function () {
     .sprite(400, 300, "start", 0)
     //.setOrigin(1, 0)
     .setInteractive();
-
+ 
   button.on(
     "pointerup",
     function () {
