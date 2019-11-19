@@ -4,6 +4,9 @@ import {
 import {
   fase2
 } from "./fase2.js";
+import {
+  fase3
+} from "./fase3.js";
 export {
   start
 
@@ -15,6 +18,7 @@ var start = new Phaser.Scene("SceneA");
 
 start.preload = function () {
   this.load.image("sky", "assets/sky.png");
+ // this.load.spritesheet("fullscreen", "assets/fullscreen.png", { frameWidth: 64, frameHeight: 64 });
   this.load.spritesheet("start", "assets/start.png", {
     frameWidth: 135,
     frameHeight: 135
