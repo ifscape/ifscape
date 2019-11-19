@@ -2,8 +2,8 @@ export {
   fase2
 };
 import {
-  start
-} from "./start.js";
+  fase3
+} from "./fase3.js";
 
 var fase2 = new Phaser.Scene("fase2");
 
@@ -21,7 +21,6 @@ var button;
 fase2.preload = function () {
   this.load.image('sky2', 'assets/sky2.png');
   this.load.image('ground', 'assets/platform.png');
-  this.load.image('chao', 'assets/chao.png');
   this.load.image('chao2', 'assets/chao2.png');
   this.load.image('star', 'assets/star.png');
   this.load.image('bomb', 'assets/bomb.png');
@@ -43,15 +42,15 @@ fase2.create = function () {
   platforms = this.physics.add.staticGroup();
 
   //  Here we create the ground.
-  platforms.create(100, 580, 'chao'); //.setScale(2).refreshBody();
-  platforms.create(690, 580, 'chao2'); //.setScale(2).refreshBody();
+  platforms.create(104, 580, 'chao2'); //.setScale(2).refreshBody();
+  platforms.create(685, 580, 'chao2'); //.setScale(2).refreshBody();
   //platforms.create(400, 1200, 'lava');//.setScale(2).refreshBody ();
 
   // (xxx, yyy) : x = move os lados, y = move a altura
   platforms.create(200, 380, 'ground'); //plataforma da esrquerda embaixo
-  platforms.create(600, 250, 'ground'); //platafomra da direita
+  platforms.create(600, 230, 'ground'); //platafomra da direita
   platforms.create(40, 230, 'ground'); //platafomra da esquerda
-  platforms.create(290, 80, 'ground'); //plataforma de cima
+  //platforms.create(290, 80, 'ground'); //plataforma de cima
   platforms.create(750, 420, 'ground'); //plat direita de baixo
 
   player = this.physics.add.sprite(100, 450, 'dude');
@@ -93,9 +92,9 @@ fase2.create = function () {
     key: "lava",
     frames: this.anims.generateFrameNumbers("lava", {
       start: 0,
-      end: 4
+      end: 5
     }),
-    frameRate: 10,
+    frameRate: 8,
     repeat: -1
   });
 
@@ -106,11 +105,11 @@ fase2.create = function () {
   //  Some stars to collect, 12 in total, evenly spaced 70 pixels apart along the x axis
   stars = this.physics.add.group({
     key: 'star',
-    repeat: 2,
+    repeat: 1,
     setXY: {
       x: 62,
       y: 8,
-      stepX: 230
+      stepX: 658
     }
   });
 
@@ -143,6 +142,7 @@ fase2.create = function () {
   lava = this.physics.add.sprite(395, 800, "lava");
   lava.setCollideWorldBounds(true);
   lava.allowGravity = false
+  lava.setScale(2.2,0.5);
   //  The score
   scoreText = this.add.text(16, 16, 'score: 0', {
     fontSize: '32px',
@@ -203,10 +203,13 @@ function collectStar(player, star) {
     //  A new batch of stars to collect
     stars.children.iterate(function (child) {
 
-      child.enableBody(true, child.x, 0, true, true);
-
+      child.enableBody(true, child.x, 0, true, true); 
+    
     });
-
+  }
+    //
+    this.scene.start(fase3);
+  
     var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
 
     var bomb = bombs.create(x, 16, 'bomb');
@@ -215,8 +218,7 @@ function collectStar(player, star) {
     bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
     bomb.allowGravity = false
   }
-  this.scene.start(start);
-}
+  
 
 function hitBomb(player, bomb) {
   this.physics.pause();
