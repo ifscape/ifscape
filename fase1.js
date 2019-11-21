@@ -17,6 +17,7 @@ var score = 0;
 var gameOver = false;
 var scoreText;
 var button;
+var music;
 
 fase1.preload = function () {
   this.load.image('sky', 'assets/sky.png');
@@ -26,6 +27,8 @@ fase1.preload = function () {
   this.load.image('grounds', 'assets/grounds.png');
   this.load.image('star', 'assets/star.png');
   this.load.image('bomb', 'assets/bomb.png');
+  this.load.image('sapo', 'assets/sapo.png');
+  this.load.audio('musica', 'assets/musica.mp3');
   this.load.spritesheet("fullscreen", "assets/fullscreen.png", { frameWidth: 64, frameHeight: 64 });
   this.load.spritesheet('dude', 'assets/dude.png', {
     frameWidth: 34,
@@ -34,7 +37,10 @@ fase1.preload = function () {
 }
 
 fase1.create = function () {
+
+  music = this.sound.add('musica')
   //  A simple background for our game
+  
   this.add.image(400, 300, 'sky');
 
   //  The platforms group contains the ground and the 2 ledges we can jump on
@@ -52,9 +58,13 @@ fase1.create = function () {
   platforms.create(105, 100, 'tijolo');
   platforms.create(675, 98, 'tijolo');
   //platforms.create(290, 80, 'ground');
+  platforms.create(400, 227, 'sapo');
 
   // The player and its settings
   player = this.physics.add.sprite(100, 450, 'dude');
+  player.setScale(1);
+  player.setSize(27, 32, true);
+  
 
   //  Player physics properties. Give the little guy a slight bounce.
   player.setBounce(0.2);
@@ -89,7 +99,7 @@ fase1.create = function () {
     frameRate: 10,
     repeat: -1
   });
-
+  
   //  Input Events
   cursors = this.input.keyboard.createCursorKeys();
 
@@ -130,7 +140,7 @@ fase1.create = function () {
   bomb2.setVelocity(Phaser.Math.Between(-200, 200), 20);
   bomb2.allowGravity = false
   //
-
+  
   //  The score
   scoreText = this.add.text(16, 16, 'score: 0', {
     fontSize: '32px',
@@ -163,7 +173,9 @@ fase1.create = function () {
       this.scale.startFullscreen();
     }
   });
+music.play();
 }
+
 
 fase1.update = function () {
   if (gameOver) {
@@ -203,7 +215,6 @@ function collectStar(player, star) {
       child.enableBody(true, child.x, 0, true, true);
 
     });
-    //
   }
   this.scene.start(fase2);
 
@@ -211,12 +222,8 @@ function collectStar(player, star) {
 
 function hitBomb(player, bomb) {
   this.physics.pause();
-
   player.setTint(0xff0000);
-
   player.anims.play('turn');
-
   gameOver = true;
-
-
+  music.stop();
 }
