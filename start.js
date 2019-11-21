@@ -18,7 +18,7 @@ var start = new Phaser.Scene("SceneA");
 
 start.preload = function () {
   this.load.image("sky", "assets/sky.png");
- // this.load.spritesheet("fullscreen", "assets/fullscreen.png", { frameWidth: 64, frameHeight: 64 });
+  
   this.load.spritesheet("start", "assets/start.png", {
     frameWidth: 135,
     frameHeight: 135
@@ -27,6 +27,7 @@ start.preload = function () {
 
 
 start.create = function () {
+
   this.add.image(400, 300, "sky");
 
   this.anims.create({
