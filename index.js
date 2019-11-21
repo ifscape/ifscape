@@ -7,6 +7,9 @@ import {
 import {
     fase2
 } from "./fase2.js";
+import {
+    fase3
+} from "./fase3.js";
 
 
 
@@ -23,7 +26,14 @@ var config = {
             debug: true
         }
     },
-    scene: [start, fase1, fase2]
+    scale: {
+        mode: Phaser.Scale.FIT,
+        parent: "game",
+        autoCenter: Phaser.Scale.CENTER_BOTH,
+        width: 800,
+        height: 600
+    },
+    scene: [start, fase1, fase2, fase3]
 };
 
 var game = new Phaser.Game(config);
