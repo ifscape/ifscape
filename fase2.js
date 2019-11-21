@@ -18,6 +18,7 @@ var gameOver = false;
 var scoreText;
 var button;
 
+
 fase2.preload = function () {
   this.load.image('sky2', 'assets/sky2.png');
   this.load.image('ground', 'assets/platform.png');
@@ -47,7 +48,7 @@ fase2.create = function () {
   //platforms.create(400, 1200, 'lava');//.setScale(2).refreshBody ();
 
   // (xxx, yyy) : x = move os lados, y = move a altura
-  platforms.create(200, 380, 'ground'); //plataforma da esrquerda embaixo
+  platforms.create(200, 365, 'ground'); //plataforma da esrquerda embaixo
   platforms.create(600, 230, 'ground'); //platafomra da direita
   platforms.create(40, 230, 'ground'); //platafomra da esquerda
   //platforms.create(290, 80, 'ground'); //plataforma de cima
@@ -175,7 +176,7 @@ fase2.create = function () {
     if (this.scale.isFullscreen) {
       fullscreenButton.setFrame(0);
       this.scale.stopFullscreen();
-    } else {
+    } else {music
       fullscreenButton.setFrame(1);
       this.scale.startFullscreen();
     }
