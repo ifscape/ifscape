@@ -42,8 +42,8 @@ fase2.create = function () {
   platforms = this.physics.add.staticGroup();
 
   //  Here we create the ground.
-  platforms.create(104, 580, 'chao2'); //.setScale(2).refreshBody();
-  platforms.create(685, 580, 'chao2'); //.setScale(2).refreshBody();
+  platforms.create(104, 582, 'chao2'); //.setScale(2).refreshBody();
+  platforms.create(685, 582, 'chao2'); //.setScale(2).refreshBody();
   //platforms.create(400, 1200, 'lava');//.setScale(2).refreshBody ();
 
   // (xxx, yyy) : x = move os lados, y = move a altura
@@ -164,6 +164,22 @@ fase2.create = function () {
   // a bomba nao pega no personagem
   this.physics.add.collider(player, bombs, hitBomb, null, this);
   this.physics.add.collider(player, lava, hitLava, null, this);
+
+  const fullscreenButton = this.add
+    .image(this.scale.width - 16, 16, "fullscreen", 0)
+    .setOrigin(1, 0)
+    .setInteractive();
+
+  // Ao clicar no botão de tela cheia
+  fullscreenButton.on("pointerup", () => {
+    if (this.scale.isFullscreen) {
+      fullscreenButton.setFrame(0);
+      this.scale.stopFullscreen();
+    } else {
+      fullscreenButton.setFrame(1);
+      this.scale.startFullscreen();
+    }
+  });
 }
 
 fase2.update = function () {
