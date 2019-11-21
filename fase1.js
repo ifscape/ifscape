@@ -16,6 +16,7 @@ var grounds;
 var score = 0;
 var gameOver = false;
 var scoreText;
+var button;
 
 fase1.preload = function () {
   this.load.image('sky', 'assets/sky.png');
@@ -25,6 +26,7 @@ fase1.preload = function () {
   this.load.image('grounds', 'assets/grounds.png');
   this.load.image('star', 'assets/star.png');
   this.load.image('bomb', 'assets/bomb.png');
+  this.load.spritesheet("fullscreen", "assets/fullscreen.png", { frameWidth: 64, frameHeight: 64 });
   this.load.spritesheet('dude', 'assets/dude.png', {
     frameWidth: 34,
     frameHeight: 34,
@@ -145,6 +147,22 @@ fase1.create = function () {
 
   // a bomba nao pega no personagem
   this.physics.add.collider(player, bombs, hitBomb, null, this);
+
+  const fullscreenButton = this.add
+    .image(this.scale.width - 16, 16, "fullscreen", 0)
+    .setOrigin(1, 0)
+    .setInteractive();
+
+  // Ao clicar no botão de tela cheia
+  fullscreenButton.on("pointerup", () => {
+    if (this.scale.isFullscreen) {
+      fullscreenButton.setFrame(0);
+      this.scale.stopFullscreen();
+    } else {
+      fullscreenButton.setFrame(1);
+      this.scale.startFullscreen();
+    }
+  });
 }
 
 fase1.update = function () {
@@ -202,4 +220,3 @@ function hitBomb(player, bomb) {
 
 
 }
-
