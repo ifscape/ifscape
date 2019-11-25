@@ -29,6 +29,7 @@ fase3.preload = function () {
   this.load.image('grounds', 'assets/grounds.png');
   this.load.image('star', 'assets/star.png');
   this.load.image('bomb', 'assets/bomb.png');
+  this.load.image('pah', 'assets/pah.png');
   this.load.spritesheet("fullscreen", "assets/fullscreen.png", { frameWidth: 64, frameHeight: 64 });
   this.load.spritesheet('dude', 'assets/dude.png', {
     frameWidth: 34,
@@ -42,19 +43,17 @@ fase3.create = function () {
 
   //  The platforms group contains the ground and the 2 ledges we can jump on
   platforms = this.physics.add.staticGroup();
-  platforms.create(400, 600, 'grounds'); //.setScale(2).refreshBody();
+  //platforms.create(400, 600, 'grounds'); //.setScale(2).refreshBody();
 
   //  Now let's create some ledges
   // (xxx, yyystart) : x = move os lados, y = move a altura
-  platforms.create(400, 250, 'plat');
-  platforms.create(850, 130, 'ground');
-  platforms.create(400, 400, 'ground');
+  platforms.create(150, 650, 'pah');
+  platforms.create(300, 650, 'pah');
+  platforms.create(450, 650, 'pah');
 
   platforms.create(30, 130, 'plat');
 
-  platforms.create(105, 100, 'tijolo');
-  platforms.create(675, 98, 'tijolo');
-  //platforms.create(290, 80, 'ground');
+
 
   // The player and its settings
   player = this.physics.add.sprite(100, 450, 'dude');
