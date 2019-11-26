@@ -3,7 +3,8 @@ export {
 };
 export {
   fase1
-} from "./fase1.js";
+}
+from "./fase1.js";
 import {
   fase2
 } from "./fase2.js";
@@ -30,7 +31,10 @@ fase3.preload = function () {
   this.load.image('star', 'assets/star.png');
   this.load.image('bomb', 'assets/bomb.png');
   this.load.image('pah', 'assets/pah.png');
-  this.load.spritesheet("fullscreen", "assets/fullscreen.png", { frameWidth: 64, frameHeight: 64 });
+  this.load.spritesheet("fullscreen", "assets/fullscreen.png", {
+    frameWidth: 64,
+    frameHeight: 64
+  });
   this.load.spritesheet('dude', 'assets/dude.png', {
     frameWidth: 34,
     frameHeight: 34,
@@ -47,9 +51,13 @@ fase3.create = function () {
 
   //  Now let's create some ledges
   // (xxx, yyystart) : x = move os lados, y = move a altura
+  platforms.create(0, 650, 'pah');
   platforms.create(150, 650, 'pah');
   platforms.create(300, 650, 'pah');
   platforms.create(450, 650, 'pah');
+  platforms.create(600, 650, 'pah');
+  platforms.create(750, 650, 'pah');
+  platforms.create(900, 650, 'pah');
 
   platforms.create(30, 130, 'plat');
 
