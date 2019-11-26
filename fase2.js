@@ -4,6 +4,9 @@ export {
 import {
   fase3
 } from "./fase3.js";
+import {
+  start
+} from "./start.js";
 
 var fase2 = new Phaser.Scene("fase2");
 
@@ -36,7 +39,12 @@ fase2.preload = function () {
   this.load.spritesheet("lava", "assets/lava.png", {
     frameWidth: 80,
     frameHeight: 80,
-    });
+  });
+
+  this.load.spritesheet('dude2', 'assets/dude2.png', {
+    frameWidth: 34,
+    frameHeight: 34,
+  });
 };
 fase2.create = function () {
 
@@ -57,22 +65,24 @@ fase2.create = function () {
   //platforms.create(290, 80, 'ground'); //plataforma de cima
   platforms.create(750, 420, 'ground'); //plat direita de baixo
 
-  player = this.physics.add.sprite(100, 450, 'dude');
+  player = this.physics.add.sprite(700, 450, 'dude');
 
   //  Player physics properties. Give the little guy a slight bounce.
   player.setBounce(0.2);
   player.setCollideWorldBounds(true);
 
-  player2 = this.physics.add.sprite(700, 450, 'dude');
+  player2 = this.physics.add.sprite(700, 450, 'dude2');
   player2.setScale(1);
   player2.setSize(27, 32, true);
-  
+
 
   //  Player physics properties. Give the little guy a slight bounce.
   player2.setBounce(0.2);
   player2.setCollideWorldBounds(true);
 
   //  Our player animations, turning, walking left and walking right.
+
+  //Player 1: direcionais
   this.anims.create({
     key: 'left',
     frames: this.anims.generateFrameNumbers('dude', {
@@ -82,6 +92,7 @@ fase2.create = function () {
     frameRate: 10,
     repeat: -1
   });
+
 
   this.anims.create({
     key: 'turn',
@@ -101,6 +112,36 @@ fase2.create = function () {
     frameRate: 10,
     repeat: -1
   });
+  //Pĺayer 2: WASD
+  this.anims.create({
+    key: 'left2',
+    frames: this.anims.generateFrameNumbers('dude2', {
+      start: 0,
+      end: 3
+    }),
+    frameRate: 10,
+    repeat: -1
+  });
+
+  this.anims.create({
+    key: 'turn2',
+    frames: [{
+      key: 'dude2',
+      frame: 4
+    }],
+    frameRate: 20
+  });
+
+  this.anims.create({
+    key: 'right2',
+    frames: this.anims.generateFrameNumbers('dude2', {
+      start: 5,
+      end: 8
+    }),
+    frameRate: 10,
+    repeat: -1
+  });
+
   this.anims.create({
     key: "lava",
     frames: this.anims.generateFrameNumbers("lava", {
@@ -136,34 +177,7 @@ fase2.create = function () {
     child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
 
   });
-  this.anims.create({
-    key: 'left',
-    frames: this.anims.generateFrameNumbers('dude', {
-      start: 0,
-      end: 3
-    }),
-    frameRate: 10,
-    repeat: -1
-  });
 
-  this.anims.create({
-    key: 'turn',
-    frames: [{
-      key: 'dude',
-      frame: 4
-    }],
-    frameRate: 20
-  });
-
-  this.anims.create({
-    key: 'right',
-    frames: this.anims.generateFrameNumbers('dude', {
-      start: 5,
-      end: 8
-    }),
-    frameRate: 10,
-    repeat: -1
-  });
   //
   bombs = this.physics.add.group();
 
@@ -186,7 +200,7 @@ fase2.create = function () {
   lava = this.physics.add.sprite(395, 800, "lava");
   lava.setCollideWorldBounds(true);
   lava.allowGravity = false
-  lava.setScale(2.2,0.5);
+  lava.setScale(2.2, 0.5);
   //  The score
   scoreText = this.add.text(16, 16, 'score: 0', {
     fontSize: '32px',
@@ -224,7 +238,8 @@ fase2.create = function () {
     if (this.scale.isFullscreen) {
       fullscreenButton.setFrame(0);
       this.scale.stopFullscreen();
-    } else {music
+    } else {
+      music
       fullscreenButton.setFrame(1);
       this.scale.startFullscreen();
     }
@@ -233,9 +248,9 @@ fase2.create = function () {
 
 fase2.update = function () {
   if (gameOver) {
-    return;
+    this.scene.start(start);;
   }
-
+  //player 1: direcionais
   if (cursors.left.isDown) {
     player.setVelocityX(-160);
 
@@ -249,30 +264,30 @@ fase2.update = function () {
 
     player.anims.play('turn');
   }
-
   if (cursors.up.isDown && player.body.touching.down) {
     player.setVelocityY(-330);
   }
 
+  //Player 2: WASD
   if (keyA.isDown) {
     player2.setVelocityX(-160);
-  
-    player2.anims.play('left', true);
+
+    player2.anims.play('left2', true);
   } else if (keyD.isDown) {
     player2.setVelocityX(160);
-  
-    player2.anims.play('right', true);
+
+    player2.anims.play('right2', true);
   } else {
     player2.setVelocityX(0);
-  
-    player2.anims.play('turn');
+
+    player2.anims.play('turn2');
   }
-  
+
   if (keyW.isDown && player2.body.touching.down) {
     player2.setVelocityY(-330);
   }
 
-  lava.anims.play("lava", true)
+  lava.anims.play("lava", true);
 }
 
 
@@ -281,20 +296,20 @@ fase2.update = function () {
 
 function collectStar(player, star) {
   //
-  if(playerGot !== player) {
+  if (playerGot !== player) {
     star.disableBody(true, true);
 
     score += 10;
     scoreText.setText('Score: ' + score);
 
-    if (stars.countActive(true) === 0 ) {
+    if (stars.countActive(true) === 0) {
       this.scene.start(fase3);
     }
   }
   playerGot = player
   //
 }
-  
+
 
 function hitBomb(player, bomb) {
   this.physics.pause();
