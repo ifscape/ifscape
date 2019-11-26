@@ -4,6 +4,9 @@ export {
 import {
   fase2
 } from "./fase2.js";
+import {
+  start
+} from "./start.js";
 
 var fase1 = new Phaser.Scene("fase1");
 
@@ -34,7 +37,10 @@ fase1.preload = function () {
   this.load.image('bomb', 'assets/bomb.png');
   this.load.image('sapo', 'assets/sapo.png');
   this.load.audio('musica', 'assets/musica.mp3');
-  this.load.spritesheet("fullscreen", "assets/fullscreen.png", { frameWidth: 64, frameHeight: 64 });
+  this.load.spritesheet("fullscreen", "assets/fullscreen.png", {
+    frameWidth: 64,
+    frameHeight: 64
+  });
   this.load.spritesheet('dude', 'assets/dude.png', {
     frameWidth: 34,
     frameHeight: 34,
@@ -49,7 +55,7 @@ fase1.create = function () {
 
   music = this.sound.add('musica')
   //  A simple background for our game
-  
+
   this.add.image(400, 300, 'sky');
 
   //  The platforms group contains the ground and the 2 ledges we can jump on
@@ -70,10 +76,10 @@ fase1.create = function () {
   platforms.create(400, 227, 'sapo');
 
   // The player and its settings
-  player = this.physics.add.sprite(100, 450, 'dude');
+  player = this.physics.add.sprite(700, 450, 'dude');
   player.setScale(1);
   player.setSize(27, 32, true);
-  
+
 
   //  Player physics properties. Give the little guy a slight bounce.
   player.setBounce(0.2);
@@ -81,10 +87,10 @@ fase1.create = function () {
 
   //
   // The player and its settings
-  player2 = this.physics.add.sprite(700, 450, 'dude2');
+  player2 = this.physics.add.sprite(100, 450, 'dude2');
   player2.setScale(1);
   player2.setSize(27, 32, true);
-  
+
 
   //  Player physics properties. Give the little guy a slight bounce.
   player2.setBounce(0.2);
@@ -92,6 +98,8 @@ fase1.create = function () {
   //
 
   //  Our playstarter animations, turning, walking left and walking right.
+
+  //Player 1: direcionais
   this.anims.create({
     key: 'left',
     frames: this.anims.generateFrameNumbers('dude', {
@@ -120,8 +128,9 @@ fase1.create = function () {
     frameRate: 10,
     repeat: -1
   });
+  //Player 2: WASD
   this.anims.create({
-    key: 'left',
+    key: 'left2',
     frames: this.anims.generateFrameNumbers('dude2', {
       start: 0,
       end: 3
@@ -131,7 +140,7 @@ fase1.create = function () {
   });
 
   this.anims.create({
-    key: 'turn',
+    key: 'turn2',
     frames: [{
       key: 'dude2',
       frame: 4
@@ -140,7 +149,7 @@ fase1.create = function () {
   });
 
   this.anims.create({
-    key: 'right',
+    key: 'right2',
     frames: this.anims.generateFrameNumbers('dude2', {
       start: 5,
       end: 8
@@ -148,7 +157,7 @@ fase1.create = function () {
     frameRate: 10,
     repeat: -1
   });
-  
+
   //  Input Events
   cursors = this.input.keyboard.createCursorKeys();
   //
@@ -187,12 +196,12 @@ fase1.create = function () {
   bomb1.setVelocity(Phaser.Math.Between(-200, 200), 20);
   bomb1.allowGravity = false
 
- // bomb2.setBounce(1);
-//  bomb2.setCollideWorldBounds(true);
-//  bomb2.setVelocity(Phaser.Math.Between(-200, 200), 20);
- // bomb2.allowGravity = false
+  // bomb2.setBounce(1);
+  //  bomb2.setCollideWorldBounds(true);
+  //  bomb2.setVelocity(Phaser.Math.Between(-200, 200), 20);
+  // bomb2.allowGravity = false
   //
-  
+
   //  The score
   scoreText = this.add.text(16, 16, 'score: 0', {
     fontSize: '32px',
@@ -208,16 +217,15 @@ fase1.create = function () {
   //
 
   //  Checks to see if the player overlaps with any of the stars, if he does call the collectStar function
-  this.physics.add.overlap(player, stars, collectStar, null, this);
-  //
   this.physics.add.overlap(player2, stars, collectStar, null, this);
-  //
-
-  // a bomba nao pega no personagem
-  this.physics.add.collider(player, bombs, hitBomb, null, this);
-  //
+  this.physics.add.overlap(player2, stars, collectStar, null, this);
   this.physics.add.collider(player2, bombs, hitBomb, null, this);
   //
+  this.physics.add.overlap(player, stars, collectStar, null, this);
+  this.physics.add.overlap(player, stars, collectStar, null, this);
+  this.physics.add.collider(player, bombs, hitBomb, null, this);
+  //
+
 
   const fullscreenButton = this.add
     .image(this.scale.width - 16, 16, "fullscreen", 0)
@@ -234,15 +242,15 @@ fase1.create = function () {
       this.scale.startFullscreen();
     }
   });
-music.play();
+  music.play();
 }
 
 
 fase1.update = function () {
   if (gameOver) {
-    return;
+    this.scene.start(start);;
   }
-
+  // Player 1: direcionais
   if (cursors.left.isDown) {
     player.setVelocityX(-160);
 
@@ -265,15 +273,15 @@ fase1.update = function () {
   if (keyA.isDown) {
     player2.setVelocityX(-160);
 
-    player2.anims.play('left', true);
+    player2.anims.play('left2', true);
   } else if (keyD.isDown) {
     player2.setVelocityX(160);
 
-    player2.anims.play('right', true);
+    player2.anims.play('right2', true);
   } else {
     player2.setVelocityX(0);
 
-    player2.anims.play('turn');
+    player2.anims.play('turn2');
   }
 
   if (keyW.isDown && player2.body.touching.down) {
@@ -284,13 +292,13 @@ fase1.update = function () {
 
 function collectStar(player, star) {
   //
-  if(playerGot !== player) {
+  if (playerGot !== player) {
     star.disableBody(true, true);
 
     score += 10;
     scoreText.setText('Score: ' + score);
 
-    if (stars.countActive(true) === 0 ) {
+    if (stars.countActive(true) === 0) {
       this.scene.start(fase2);
     }
   }
