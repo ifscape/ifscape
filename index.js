@@ -10,6 +10,9 @@ import {
 import {
     fase3
 } from "./fase3.js";
+import {
+    gameover
+} from "./gameover.js";
 
 
 
@@ -33,7 +36,7 @@ var config = {
         width: 800,
         height: 600
     },
-    scene: [start, fase1, fase2, fase3]
+    scene: [start, fase1, fase2, fase3, gameover]
 };
 
 var game = new Phaser.Game(config);
