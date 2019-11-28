@@ -5,6 +5,9 @@ import {
   fase2
 } from "./fase2.js";
 import {
+  gameover
+} from "./gameover.js";
+import {
   start
 } from "./start.js";
 
@@ -248,7 +251,7 @@ fase1.create = function () {
 
 fase1.update = function () {
   if (gameOver) {
-    this.scene.start(start);;
+    this.scene.start(gameover);;
   }
   // Player 1: direcionais
   if (cursors.left.isDown) {
