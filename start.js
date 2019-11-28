@@ -9,7 +9,6 @@ import {
 } from "./fase3.js";
 export {
   start
-
 };
 
 var button;
