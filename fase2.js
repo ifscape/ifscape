@@ -65,13 +65,13 @@ fase2.create = function () {
   //platforms.create(290, 80, 'ground'); //plataforma de cima
   platforms.create(750, 420, 'ground'); //plat direita de baixo
 
-  player = this.physics.add.sprite(700, 450, 'dude');
+  player = this.physics.add.sprite(100, 450, 'dude');
 
   //  Player physics properties. Give the little guy a slight bounce.
   player.setBounce(0.2);
   player.setCollideWorldBounds(true);
 
-  player2 = this.physics.add.sprite(700, 450, 'dude2');
+  player2 = this.physics.add.sprite(100, 450, 'dude2');
   player2.setScale(1);
   player2.setSize(27, 32, true);
 
@@ -289,9 +289,6 @@ fase2.update = function () {
 
   lava.anims.play("lava", true);
 }
-
-
-
 
 
 function collectStar(player, star) {
