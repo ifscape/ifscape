@@ -5,8 +5,8 @@ import {
   fase3
 } from "./fase3.js";
 import {
-  start
-} from "./start.js";
+  gameover
+} from "./gameover.js";
 
 var fase2 = new Phaser.Scene("fase2");
 
@@ -56,8 +56,7 @@ fase2.create = function () {
   //  Here we create the ground.
   platforms.create(104, 582, 'chao2'); //.setScale(2).refreshBody();
   platforms.create(685, 582, 'chao2'); //.setScale(2).refreshBody();
-  //platforms.create(400, 1200, 'lava');//.setScale(2).refreshBody ();
-
+  
   // (xxx, yyy) : x = move os lados, y = move a altura
   platforms.create(200, 365, 'ground'); //plataforma da esrquerda embaixo
   platforms.create(600, 230, 'ground'); //platafomra da direita
@@ -185,17 +184,17 @@ fase2.create = function () {
   var bomb1 = bombs.create(x, 16, 'bomb');
 
   var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
-  //var bomb2 = bombs.create(x, 16, 'bomb');
+  var bomb2 = bombs.create(x, 16, 'bomb');
 
   bomb1.setBounce(1);
   bomb1.setCollideWorldBounds(true);
   bomb1.setVelocity(Phaser.Math.Between(-200, 200), 20);
   bomb1.allowGravity = false
 
-  //bomb2.setBounce(1);
-  //bomb2.setCollideWorldBounds(true);
-  //bomb2.setVelocity(Phaser.Math.Between(-200, 200), 20);
-  //bomb2.allowGravity = false
+  bomb2.setBounce(1);
+  bomb2.setCollideWorldBounds(true);
+  bomb2.setVelocity(Phaser.Math.Between(-200, 200), 20);
+  bomb2.allowGravity = false
   //
   lava = this.physics.add.sprite(395, 800, "lava");
   lava.setCollideWorldBounds(true);
@@ -248,7 +247,7 @@ fase2.create = function () {
 
 fase2.update = function () {
   if (gameOver) {
-    this.scene.start(start);;
+    this.scene.start(gameover);;
   }
   //player 1: direcionais
   if (cursors.left.isDown) {
