@@ -11,6 +11,9 @@ import {
 import {
   gameover
 } from "./gameover.js";
+import {
+  win
+} from "./win.js"
 
 
 var fase3 = new Phaser.Scene("fase3");
@@ -186,7 +189,7 @@ fase3.create = function () {
   bombs = this.physics.add.group();
 
   var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
-  var bomb1 = bombs.create(x, 16, 'bomb');
+  var bomb1 = bombs.create(x, 14, 'bomb');
 
   var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
   var bomb2 = bombs.create(x, 16, 'bomb');
@@ -304,7 +307,7 @@ function collectStar(player, star) {
     scoreText.setText('Score: ' + score);
 
     if (stars.countActive(true) === 0) {
-      this.scene.start(fase3);
+      this.scene.start(win);
     }
   }
   playerGot = player
