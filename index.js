@@ -13,7 +13,9 @@ import {
 import {
     gameover
 } from "./gameover.js";
-
+import {
+    win
+} from "./win.js";
 
 
 var config = {
@@ -26,7 +28,7 @@ var config = {
             gravity: {
                 y: 300
             },
-            debug: true
+            debug: false
         }
     },
     scale: {
@@ -36,7 +38,7 @@ var config = {
         width: 800,
         height: 600
     },
-    scene: [start, fase1, fase2, fase3, gameover]
+    scene: [start, fase1, fase2, fase3, gameover, win]
 };
 
 var game = new Phaser.Game(config);
