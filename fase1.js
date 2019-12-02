@@ -11,6 +11,7 @@ import {
   start
 } from "./start.js";
 
+
 var fase1 = new Phaser.Scene("fase1");
 
 var player;
@@ -73,8 +74,8 @@ fase1.create = function () {
 
   platforms.create(30, 130, 'plat');
 
-  platforms.create(105, 100, 'tijolo');
-  platforms.create(675, 98, 'tijolo');
+  platforms.create(105, 101, 'tijolo');
+  platforms.create(675, 101, 'tijolo');
   //platforms.create(290, 80, 'ground');
   platforms.create(400, 227, 'sapo');
 
@@ -189,7 +190,7 @@ fase1.create = function () {
   bombs = this.physics.add.group();
 
   var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
-  var bomb1 = bombs.create(x, 16, 'bomb');
+  var bomb1 = bombs.create(x, 14, 'bomb');
 
   //var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
   //var bomb2 = bombs.create(x, 16, 'bomb');
@@ -298,7 +299,7 @@ function collectStar(player, star) {
   if (playerGot !== player) {
     star.disableBody(true, true);
 
-    score += 10;
+    score += 1;
     scoreText.setText('Score: ' + score);
 
     if (stars.countActive(true) === 0) {
