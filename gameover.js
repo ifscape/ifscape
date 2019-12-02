@@ -39,4 +39,6 @@ gameover.create = function () {
 
 gameover.update = function () {
   button.anims.play("game_over", true);
+  music.stop();
+
 }
