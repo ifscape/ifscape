@@ -54,8 +54,8 @@ fase2.create = function () {
   platforms = this.physics.add.staticGroup();
 
   //  Here we create the ground.
-  platforms.create(104, 582, 'chao2'); //.setScale(2).refreshBody();
-  platforms.create(685, 582, 'chao2'); //.setScale(2).refreshBody();
+  platforms.create(106, 582, 'chao2'); //.setScale(2).refreshBody();
+  platforms.create(684, 582, 'chao2'); //.setScale(2).refreshBody();
   
   // (xxx, yyy) : x = move os lados, y = move a altura
   platforms.create(200, 365, 'ground'); //plataforma da esrquerda embaixo
