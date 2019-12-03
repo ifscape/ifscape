@@ -16,6 +16,7 @@ import {
 } from "./win.js"
 
 
+
 var fase3 = new Phaser.Scene("fase3");
 
 var player;
@@ -189,10 +190,13 @@ fase3.create = function () {
   bombs = this.physics.add.group();
 
   var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
-  var bomb1 = bombs.create(x, 14, 'bomb');
+  var bomb1 = bombs.create(x, 18, 'bomb');
 
   var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
   var bomb2 = bombs.create(x, 16, 'bomb');
+  
+  var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
+  var bomb3 = bombs.create(x, 19, 'bomb');  
 
   bomb1.setBounce(1);
   bomb1.setCollideWorldBounds(true);
@@ -204,6 +208,12 @@ fase3.create = function () {
   bomb2.setVelocity(Phaser.Math.Between(-200, 200), 20);
   bomb2.allowGravity = false
   //
+  bomb3.setBounce(1);
+  bomb3.setCollideWorldBounds(true);
+  bomb3.setVelocity(Phaser.Math.Between(-200, 200), 20);
+  bomb3.allowGravity = false
+  //
+
   lava = this.physics.add.sprite(395, 800, "lava");
   lava.setCollideWorldBounds(true);
   lava.allowGravity = false
