@@ -5,12 +5,13 @@ import {
     win
   };
   
+
   var button;
   // var setupSceneInput;
   var win = new Phaser.Scene("win");
   
   win.preload = function () {
-    this.load.image("win", "assets/win.png");
+    this.load.image("sky", "assets/sky.png");
     this.load.spritesheet("winner", "assets/winner.png", {
       frameWidth: 130,
       frameHeight: 130
@@ -19,7 +20,7 @@ import {
   };
   
   win.create = function () {
-    this.add.image(400, 300, "win");
+    this.add.image(400, 300, "sky");
     this.anims.create({
       key: "win_scene",
       frames: this.anims.generateFrameNumbers("winner", {
@@ -32,7 +33,7 @@ import {
   
     //this.add.sprite(400, 300, "start");
     button = this.add
-      .sprite(400, 300, "win", 0)
+      .sprite(400, 300, "sky", 0)
       //.setOrigin(1, 0)
       .setInteractive();
   };
