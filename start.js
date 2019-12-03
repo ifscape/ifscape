@@ -7,6 +7,7 @@ import {
 import {
   fase3
 } from "./fase3.js";
+
 export {
   start
 };
@@ -16,6 +17,8 @@ var setupSceneInput;
 var start = new Phaser.Scene("SceneA");
 
 start.preload = function () {
+
+  
   this.load.image("sky", "assets/sky.png");
   
   this.load.spritesheet("start", "assets/start.png", {
