@@ -5,12 +5,14 @@ export {
   gameover
 };
 
+var morri;
 var button;
 // var setupSceneInput;
 var gameover = new Phaser.Scene("gameover");
 
 gameover.preload = function () {
   this.load.image("game2", "assets/game2.png");
+  this.load.audio('morri', 'assets/morri.mp3');
   this.load.spritesheet("over", "assets/over.png", {
     frameWidth: 130,
     frameHeight: 130
@@ -35,10 +37,15 @@ gameover.create = function () {
     .sprite(400, 300, "over", 0)
     //.setOrigin(1, 0)
     .setInteractive();
+
+    morri = this.sound.add('morri'); 
+    morri.play();
 };
+
 
 gameover.update = function () {
   button.anims.play("game_over", true);
-  music.stop();
+ 
+ 
 
 }
