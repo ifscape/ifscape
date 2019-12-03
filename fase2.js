@@ -2,6 +2,9 @@ export {
   fase2
 };
 import {
+  fase1
+} from "./fase1.js";
+import {
   fase3
 } from "./fase3.js";
 import {
@@ -312,6 +315,7 @@ function hitBomb(player, bomb) {
   player.setTint(0xff0000);
   player.anims.play('turn');
   gameOver = true;
+  music.stop();
 }
 
 function hitLava(player, lava) {
@@ -319,5 +323,6 @@ function hitLava(player, lava) {
   player.setTint(0xff0000);
   player.anims.play('turn');
   gameOver = true;
+  music.stop();
 
 }
