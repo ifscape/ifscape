@@ -21,11 +21,12 @@ var bombs;
 var platforms;
 var cursors;
 var grounds;
-var score = 0;
+//var score = 0;
 var gameOver = false;
-var scoreText;
+//var scoreText;
 var button;
 var music;
+
 //
 var keyA, keyD, keyW;
 var playerGot;
@@ -190,7 +191,7 @@ fase1.create = function () {
   bombs = this.physics.add.group();
 
   var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
-  var bomb1 = bombs.create(x, 14, 'bomb');
+  var bomb1 = bombs.create(x, 16, 'bomb');
 
   //var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
   //var bomb2 = bombs.create(x, 16, 'bomb');
@@ -207,10 +208,7 @@ fase1.create = function () {
   //
 
   //  The score
-  scoreText = this.add.text(16, 16, 'score: 0', {
-    fontSize: '32px',
-    fill: '#000'
-  });
+  
 
   //  Collide the player and the stars with the platforms
   this.physics.add.collider(player, platforms);
@@ -298,9 +296,6 @@ function collectStar(player, star) {
   //
   if (playerGot !== player) {
     star.disableBody(true, true);
-
-    score += 1;
-    scoreText.setText('Score: ' + score);
 
     if (stars.countActive(true) === 0) {
       this.scene.start(fase2);
