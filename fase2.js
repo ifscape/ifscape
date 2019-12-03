@@ -312,6 +312,7 @@ function hitBomb(player, bomb) {
   player.setTint(0xff0000);
   player.anims.play('turn');
   gameOver = true;
+  music.stop();
 }
 
 function hitLava(player, lava) {
@@ -319,4 +320,5 @@ function hitLava(player, lava) {
   player.setTint(0xff0000);
   player.anims.play('turn');
   gameOver = true;
+  music.stop();
 }
