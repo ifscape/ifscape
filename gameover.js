@@ -14,8 +14,8 @@ gameover.preload = function () {
   this.load.image("game2", "assets/game2.png");
   this.load.audio('morri', 'assets/morri.mp3');
   this.load.spritesheet("over", "assets/over.png", {
-    frameWidth: 130,
-    frameHeight: 130
+    frameWidth: 128,
+    frameHeight: 128
   });
 
 };
