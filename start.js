@@ -38,7 +38,7 @@ start.create = function () {
       start: 0,
       end: 29
     }),
-    frameRate: 10,
+    frameRate: 11,
     repeat: -1
   });
 
