@@ -60,4 +60,5 @@ start.create = function () {
 
 start.update = function () {
   button.anims.play("animacao", true);
+  
 }
