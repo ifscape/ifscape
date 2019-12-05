@@ -200,10 +200,10 @@ fase2.create = function () {
   lava.setCollideWorldBounds(true);
   lava.allowGravity = false
   lava.setScale(2.2, 0.5);
-  //  The score
-  scoreText = this.add.text(16, 16, 'score: 0', {
-    fontSize: '32px',
-    fill: '#000'
+  //  The 
+ // scoreText = this.add.text(16, 16, 'score: 0', {
+  //  fontSize: '32px',
+ //   fill: '#000'
   });
 
 
@@ -295,8 +295,8 @@ function collectStar(player, star) {
   if (playerGot !== player) {
     star.disableBody(true, true);
 
-    score += 10;
-    scoreText.setText('Score: ' + score);
+ //   score += 10;
+ //   scoreText.setText('Score: ' + score);
 
     if (stars.countActive(true) === 0) {
       this.scene.start(fase3);
