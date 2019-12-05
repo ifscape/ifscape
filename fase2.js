@@ -181,10 +181,10 @@ fase2.create = function () {
   bombs = this.physics.add.group();
 
   var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
-  var bomb1 = bombs.create(x, 18, 'bomb');
+  var bomb1 = bombs.create(x, 19, 'bomb');
 
   var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
-  var bomb2 = bombs.create(x, 18, 'bomb');
+  var bomb2 = bombs.create(x, 19, 'bomb');
 
   bomb1.setBounce(1);
   bomb1.setCollideWorldBounds(true);
